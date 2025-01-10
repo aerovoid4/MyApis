@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>API Overview - Human API</title>
+    <link rel="icon" type="x-icon/png" href="https://avatars.githubusercontent.com/u/147589149?v=4">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Explore the powerful and easy-to-use REST API of Human API. Get started with the comprehensive API documentation and enhance your application development.">
+    <meta name="keywords" content="REST API, API documentation, Human API, API guide, developer, integration">
+    <meta name="author" content="Khalid">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="API Overview - Human API">
+    <meta property="og:description" content="Discover the full capabilities of the Human API REST API. Our API enables seamless integration for developers to enhance their applications effortlessly.">
+    <meta property="og:url" content="https://api.khaliddesu.my.id">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/147589149?v=4">
+    <meta property="og:site_name" content="Human API">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@khaliddesu">
+    <meta name="twitter:title" content="API Overview">
+    <meta name="twitter:description" content="Explore our powerful API for seamless integration into your applications. Start building today with comprehensive documentation at your fingertips.">
+    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/147589149?v=4">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('https://i.pinimg.com/originals/16/cd/7d/16cd7d4b4805dfe96850f55edebcec32.jpg') no-repeat center center/cover;
+            backdrop-filter: blur(1px);
+            color: #ffffff;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #preloader .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #fff;
+            border-top: 5px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+            max-width: 320px;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #ffffff;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.1);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #ffffff;
+            background: #5E50F9;
+            padding: 10px 20px;
+            border-radius: 90px;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: #5E50F9;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .popup.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            animation: zoomIn 0.5s ease;
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomOut {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .popup .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: #ffffff;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .popup .close-btn:hover {
+            color: #5E50F9;
+        }
+
+        body.fade-out {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Kontainer utama -->
+    <div class="container">
+        <!-- Foto Profil -->
+        <img src="https://avatars.githubusercontent.com/u/147589149?v=4" alt="pics.bin" class="profile-pic" id="profilePic">
+        <!-- Teks Selamat Datang -->
+        <h1>Selamat Datang di Rest API!</h1>
+        <p>Rest API ini tidak memerlukan Apikey, Anda dapat menggunakannya tanpa batas request (unlimited).</p>
+        <!-- Tombol Menuju Halaman Docs -->
+        <a href="/docs" class="btn" id="docsButton">View Docs</a>
+        <a href="/contact" class="btn" id="docsButton">Contact Me</a>
+    </div>
+
+    <!-- Popup Foto Profil -->
+    <div class="popup" id="popup">
+        <span class="close-btn" id="closePopup">&times;</span>
+        <img src="https://avatars.githubusercontent.com/u/147589149?v=4" alt="pics.bin">
+    </div>
+
+    <script>
+        window.addEventListener("load", function() {
+            const preloader = document.getElementById("preloader");
+            const container = document.querySelector(".container");
+
+            preloader.style.display = "none";
+            container.classList.add("show");
+        });
+
+        const profilePic = document.getElementById("profilePic");
+        const popup = document.getElementById("popup");
+        const closePopup = document.getElementById("closePopup");
+
+        profilePic.addEventListener("click", function() {
+            popup.classList.add("show");
+        });
+
+        closePopup.addEventListener("click", function() {
+            popup.classList.remove("show");
+        });
+
+        const button = document.getElementById("docsButton");
+        button.addEventListener("click", function(event) {
+            event.preventDefault();
+            document.body.classList.add("fade-out");
+
+            setTimeout(function() {
+                window.location.href = button.getAttribute("href");
+            }, 800);
+        });
+    </script>
+</body>
+</html>
